@@ -1,0 +1,13 @@
+<h1>Tasks#index</h1>
+<p>Find me in app/views/tasks/index.html.erb</p>
+
+<% unless @tasks.empty? %>
+<div class="task-cards">
+  <% @tasks.each do |task| %>
+    <div class="task-card">
+      <%= task.title %>
+    </div>
+  <% end %>
+</div>
+<% end %>
+
