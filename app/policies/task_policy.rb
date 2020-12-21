@@ -9,7 +9,7 @@ class TaskPolicy < ApplicationPolicy
     return true
   end
 
-  def destroy
+  def destroy?
     record.user == user
   end
 end
