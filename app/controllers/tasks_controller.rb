@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = policy_scope(Task).order(created_at: :desc)
+    @tasks = policy_scope(Task).order(deadline: :desc)
     @task = Task.new
     @comment = Comment.new
   end
@@ -10,9 +10,11 @@ class TasksController < ApplicationController
     @task.user = current_user
     authorize @task
 
-    if @task.save!
+    if @task.save
       redirect_to root_path
     else
+      @tasks = policy_scope(Task).order(deadline: :desc)
+      @comment = Comment.new
       render :index
     end
   end

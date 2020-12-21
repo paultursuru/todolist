@@ -1,38 +1,56 @@
-<h1>Tasks#index</h1>
-<p>Find me in app/views/tasks/index.html.erb</p>
-
-<% if policy(Task).create? %>
-  <%= simple_form_for(@task) do |f| %>
-    <%= f.input :title %>
-    <%= f.input :deadline %>
-    <%= f.submit "+" %>
+<div class="container">
+  <div class="list-header">
+    <h1>My list</h1>
+    <p><%= pluralize(@tasks.count, 'task') %> yet to do !</p>
+  </div>
+  <% if policy(Task).create? %>
+    <%= simple_form_for(@task, remote: true) do |f| %>
+      <%= f.input :title, placeholder: "new task.." %>
+      <%= f.input :deadline, placeholder: "🗓", as: :string, required: true, input_html: {class: "datepicker"} %>
+      <div class="task_submit"><%= f.submit "+" %></div>
+    <% end %>
   <% end %>
-
-<% end %>
-
-<% unless @tasks.empty? %>
-  <div class="task-cards">
-    <% @tasks.each do |task| %>
-      <div class="task-card">
-        <%= link_to "destroy task", task_path(task), method: :delete %>
-        <%= task.title %>
-        <p><%= distance_of_time_in_words(Time.now, task.deadline) %> left</p>
-        <div class="comments">
-          <% if policy(Comment).create? %>
-            <%= simple_form_for [ task, @comment ] do |f| %>
-              <%= f.input :content %>
-              <%= f.submit "add" %>
+<div class="todo-and-done-tasks">
+  <% unless @tasks.empty? %>
+    <div id="tasks" class="task-cards">
+      <h5>To do</h5>
+      <% @tasks.each do |task| %>
+      <div class="task-and-comments">
+        <div class="task-card">
+          <div class="task-title"><h6><%= task.title %></h6></div>
+          <div class="task-actions">
+            <div class="task-deadline"><p><%= distance_of_time_in_words(Time.now, task.deadline) %> left</p></div>
+            <a class="" data-toggle="collapse" href="#collapseComments-<%= task.id %>" role="button" aria-expanded="false" aria-controls="collapseComments-<%= task.id %>">
+              💬
+            </a>
+            <%= link_to "🗑", task_path(task), method: :delete, remote: true %>
+          </div>
+        </div>
+        <div class="collapse collapse-comments" data-parent="#tasks" id="collapseComments-<%= task.id %>">
+          <div class="comments">
+            <% if policy(Comment).create? %>
+              <%= simple_form_for([ task, @comment ], remote: true) do |f| %>
+                <%= f.input :content, placeholder: "add comment..." %>
+                <div class="comment-submit"><%= f.submit "+" %></div>
+              <% end %>
             <% end %>
-          <% end %>
-          <% unless task.comments.empty? %>
-            <% task.comments.each do |comment| %>
-              <%= comment.content %>
-              <%= link_to "destroy comment", comment_path(comment), method: :delete %>
+            <% unless task.comments.empty? %>
+              <div class="comment-cards">
+                <% task.comments.each do |comment| %>
+                  <div class="comment-card">
+                    <div class="comment-content"><p><%= comment.content %></p></div>
+                    <%= link_to "🗑", comment_path(comment), method: :delete, remote: true %>
+                  </div>
+                <% end %>
+              </div>
             <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
-    <% end %>
-  </div>
-<% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>
+</div>
 
