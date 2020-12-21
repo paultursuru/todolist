@@ -1,0 +1,90 @@
+
+#new_task {
+  display: flex;
+  height: 70px;
+  width: 345px;
+  align-items: center;
+  box-shadow: 0 0 10px lightgray;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 20px 0;
+  justify-content: space-between;
+  label {
+    display: none;
+  }
+  input {
+    border: none;
+  }
+  .form-group {
+    margin: 0;
+  }
+  .task_title {
+    width: 60%;
+  }
+  .task_deadline {
+    width: 15%;
+    input {
+      background: white;
+    }
+  }
+}
+.task-cards {
+  width: 345px;
+  .task-card {
+    display: flex;
+    height: 70px;
+    width: 345px;
+    align-items: center;
+    box-shadow: 0 0 10px lightgray;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px 0 0 0;
+    justify-content: space-between;
+    h6, p {
+      margin: 0;
+    }
+    .task-deadline {
+      font-style: italic;
+      color: gray;
+      padding: 0 10px;
+    }
+    .task-actions {
+      display: flex;
+      a {
+        padding: 0 10px;
+      }
+    }
+  }
+  .task-and-comments {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .collapse-comments {
+      width: 300px;
+      box-shadow: 0 5px 10px lightgray;
+      padding: 10px;
+      border-radius: 5px;
+      #new_comment {
+        display: flex;
+        align-items: center;
+        .form-group {
+          margin: 0;
+        }
+        label {
+          display: none;
+        }
+        input {
+          border: none;
+        }
+      }
+    }
+  }
+}
+
+.comment-card {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
+}
