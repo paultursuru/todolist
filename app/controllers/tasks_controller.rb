@@ -1,22 +1,27 @@
 class TasksController < ApplicationController
   def index
-    @tasks = current_user.tasks
+    @tasks = policy_scope(Task).order(created_at: :desc)
     @task = Task.new
     @comment = Comment.new
   end
 
   def create
     @task = Task.new(task_params)
-    if @task.save
+    @task.user = current_user
+    authorize @task
+
+    if @task.save!
       redirect_to root_path
     else
-      render "tasks#index"
+      render :index
     end
   end
 
   def destroy
-    task = Task.find(params[:id])
-    task.destroy
+    @task = Task.find(params[:id])
+    authorize @task
+
+    @task.destroy
     redirect_to root_path
   end
 
