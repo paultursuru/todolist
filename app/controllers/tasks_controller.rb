@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = policy_scope(Task).order(deadline: :desc)
+    @tasks = policy_scope(Task).order(deadline: :asc)
     @task = Task.new
     @comment = Comment.new
   end
@@ -13,7 +13,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to root_path
     else
-      @tasks = policy_scope(Task).order(deadline: :desc)
+      @tasks = policy_scope(Task).order(deadline: :asc)
       @comment = Comment.new
       render :index
     end
