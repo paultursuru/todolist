@@ -6,7 +6,9 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to root_path
     else
-      render "tasks#index"
+      @tasks = policy_scope(Task).order(deadline: :desc)
+      @task = Task.new
+      render "tasks/index"
     end
   end
 
