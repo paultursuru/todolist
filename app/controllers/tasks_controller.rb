@@ -24,6 +24,19 @@ class TasksController < ApplicationController
     end
   end
 
+  def update
+    authorize @task
+    @task.update(task_params)
+    if @task.save
+      redirect_to root_path
+    else
+      @tasks_by_deadlines = policy_scope(Task).order(deadline: :asc)
+      @tasks_by_priorities = policy_scope(Task).order(priority: :asc)
+      @comment = Comment.new
+      render :index
+    end
+  end
+
   def mark_as_done
     authorize @task
     @task.done!

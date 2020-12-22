@@ -2,21 +2,27 @@
   <div class="task-and-comments">
     <div class="task-card <%= task.priority %>">
       <div class="task-infos">
-          <% if (task.deadline - Date.today).to_i >= 1 %>
-            <p class="deadline-sticker upcoming"><%= (task.deadline - Date.today).to_i %> days left</p>
-          <% elsif (task.deadline - Date.today).to_i == 0 %>
-            <p class="deadline-sticker today">today</p>
-          <% else %>
-            <p class="deadline-sticker passed">passed</p>
-          <% end %>
-          <a class="deadline-sticker <%= task.priority %>" data-toggle="collapse" href="#collapsePriority-<%= task.id %>" role="button" aria-expanded="false" aria-controls="collapsePriority-<%= task.id %>">
-            <%= "high priority" if task.very_urgent? %>
-            <%= "urgent" if task.urgent? %>
-            <%= "not urgent" if task.normal? %>
+        <% if (task.deadline - Date.today).to_i >= 1 %>
+          <a class="deadline-sticker upcoming" data-toggle="collapse" href="#collapseDeadline-<%= task.id %>" role="button" aria-expanded="false" aria-controls="#collapseDeadline-<%= task.id %>">
+            <%= pluralize((task.deadline - Date.today).to_i, "day") %> left
           </a>
-          <a class="deadline-sticker comment-sticker" data-toggle="collapse" href="#collapseComments-<%= task.id %>" role="button" aria-expanded="false" aria-controls="collapseComments-<%= task.id %>">
-            <%= pluralize( task.comments.count, "comment") %>
+        <% elsif (task.deadline - Date.today).to_i == 0 %>
+          <a class="deadline-sticker today" data-toggle="collapse" href="#collapseDeadline-<%= task.id %>" role="button" aria-expanded="false" aria-controls="#collapseDeadline-<%= task.id %>">
+            today
           </a>
+        <% else %>
+          <a class="deadline-sticker today" data-toggle="collapse" href="#collapseDeadline-<%= task.id %>" role="button" aria-expanded="false" aria-controls="#collapseDeadline-<%= task.id %>">
+            passed
+          </a>
+        <% end %>
+        <a class="deadline-sticker <%= task.priority %>" data-toggle="collapse" href="#collapsePriority-<%= task.id %>" role="button" aria-expanded="false" aria-controls="collapsePriority-<%= task.id %>">
+          <%= "high priority" if task.very_urgent? %>
+          <%= "urgent" if task.urgent? %>
+          <%= "not urgent" if task.normal? %>
+        </a>
+        <a class="deadline-sticker comment-sticker" data-toggle="collapse" href="#collapseComments-<%= task.id %>" role="button" aria-expanded="false" aria-controls="collapseComments-<%= task.id %>">
+          <%= pluralize( task.comments.count, "comment") %>
+        </a>
       </div>
       <div class="task-title-and-actions">
         <div class="task-title"><h6><%= task.title %></h6></div>
@@ -56,5 +62,15 @@
         <%= link_to "not so urgent", mark_as_normal_path(task), method: :post, remote: true unless task.normal? %>
       </div>
     </div>
+    <% if policy(task).update? %>
+      <div class="collapse collapse-comments" id="collapseDeadline-<%= task.id %>">
+        <div class="deadline-form">
+            <%= simple_form_for(task, remote: true) do |f| %>
+              <%= f.input :deadline, placeholder: "🗓", as: :string, required: true, input_html: {class: "datepicker"} %>
+              <div class="task_submit"><%= f.submit "+" %></div>
+            <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
 <% end %>

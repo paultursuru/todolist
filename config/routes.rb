@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'tasks#index'
-  resources :tasks, only: [:index, :create, :edit, :destroy] do
+  resources :tasks, only: [:index, :create, :update, :destroy] do
     resources :comments, only: :create
   end
   post 'mark_as_done/:id', to: 'tasks#mark_as_done', as: 'mark_as_done'
