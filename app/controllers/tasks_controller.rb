@@ -1,9 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, except: [:index, :create]
   def index
-    @tasks = policy_scope(Task)
-    @tasks_by_deadlines = @tasks.order(deadline: :asc)
-    @tasks_by_priorities = @tasks.order(priority: :desc)
+    set_tasks
 
     @task = Task.new
     @comment = Comment.new
@@ -17,8 +15,8 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to root_path
     else
-      @tasks_by_deadlines = policy_scope(Task).order(deadline: :asc)
-      @tasks_by_priorities = policy_scope(Task).order(priority: :asc)
+      set_tasks
+      flash[:alert] = "Please fill all fields"
       @comment = Comment.new
       render :index
     end
@@ -30,8 +28,8 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to root_path
     else
-      @tasks_by_deadlines = policy_scope(Task).order(deadline: :asc)
-      @tasks_by_priorities = policy_scope(Task).order(priority: :asc)
+      set_tasks
+
       @comment = Comment.new
       render :index
     end
