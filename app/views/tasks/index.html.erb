@@ -13,10 +13,10 @@
   <div class="todo-and-done-tasks">
     <h5>To do</h5>
     <div id="tasks_by_deadlines" class="task-cards d-none">
-      <%= render 'tasks_todo', tasks: @tasks_by_deadlines %>
+      <%= render 'tasks/tasks_todo', tasks: @tasks_by_deadlines %>
     </div>
     <div id="tasks_by_priorities" class="task-cards">
-      <%= render 'tasks_todo', tasks: @tasks_by_priorities %>
+      <%= render 'tasks/tasks_todo', tasks: @tasks_by_priorities %>
     </div>
   </div>
 </div>
