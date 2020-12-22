@@ -11,7 +11,7 @@
           <%= link_to "🗑", task_path(task), method: :delete, remote: true %>
         </div>
       </div>
-      <div class="collapse collapse-comments" data-parent="#tasks" id="collapseComments-<%= task.id %>">
+      <div class="collapse collapse-comments" id="collapseComments-<%= task.id %>">
         <div class="comments">
           <% if policy(Comment).create? %>
             <%= simple_form_for([ task, @comment ], remote: true) do |f| %>
