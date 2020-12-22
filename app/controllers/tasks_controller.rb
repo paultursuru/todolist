@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   def index
     @tasks_by_deadlines = policy_scope(Task).order(deadline: :asc)
-    @tasks_by_priorities = policy_scope(Task).order(priority: :asc)
+    @tasks_by_priorities = policy_scope(Task).order(priority: :desc)
     @tasks_counter = @tasks_by_priorities.count
 
     @task = Task.new

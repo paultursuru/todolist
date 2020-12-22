@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container py-5">
   <div class="list-header">
     <h1>My list</h1>
     <p><%= pluralize(@tasks_counter, 'task') %> yet to do !</p>
@@ -12,10 +12,10 @@
   <% end %>
   <div class="todo-and-done-tasks">
     <h5>To do</h5>
-    <div id="tasks_by_deadlines" class="task-cards">
+    <div id="tasks_by_deadlines" class="task-cards d-none">
       <%= render 'tasks_todo', tasks: @tasks_by_deadlines %>
     </div>
-    <div id="tasks_by_priorities" class="task-cards d-none">
+    <div id="tasks_by_priorities" class="task-cards">
       <%= render 'tasks_todo', tasks: @tasks_by_priorities %>
     </div>
   </div>
