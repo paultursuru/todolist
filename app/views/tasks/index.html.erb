@@ -1,7 +1,6 @@
 <div class="container py-5">
   <div class="list-header">
     <h1>My list</h1>
-    <p><%= pluralize(@tasks_counter, 'task') %> yet to do !</p>
   </div>
   <% if policy(Task).create? %>
     <%= simple_form_for(@task, remote: true) do |f| %>
@@ -11,12 +10,26 @@
     <% end %>
   <% end %>
   <div class="todo-and-done-tasks">
-    <h5>To do</h5>
-    <div id="tasks_by_deadlines" class="task-cards d-none">
-      <%= render 'tasks/tasks_todo', tasks: @tasks_by_deadlines %>
+    <div class="to-do-tasks">
+      <div class="status-infos"><h5 class="mr-2">To do</h5> <p>(<%= todo(@tasks).count %>)</p></div>
+      <div id="tasks_by_deadlines" class="task-cards d-none">
+        <%= render 'tasks/tasks_todo', tasks: todo(@tasks_by_deadlines) %>
+      </div>
+      <div id="tasks_by_priorities" class="task-cards">
+        <%= render 'tasks/tasks_todo', tasks: todo(@tasks_by_priorities) %>
+      </div>
     </div>
-    <div id="tasks_by_priorities" class="task-cards">
-      <%= render 'tasks/tasks_todo', tasks: @tasks_by_priorities %>
+    <div class="done-tasks">
+      <div class="status-infos"><h5 class="mr-2">Done</h5><p>(<%= done(@tasks).count %>)</p></div>
+      <div class="task-cards">
+        <%= render 'tasks/done_tasks', tasks: done(@tasks) %>
+      </div>
+    </div>
+    <div class="cancelled-tasks">
+      <div class="status-infos"><h5 class="mr-2">Cancelled</h5><p>(<%= cancelled(@tasks).count %>)</p></div>
+      <div class="task-cards">
+        <%= render 'tasks/done_tasks', tasks: cancelled(@tasks) %>
+      </div>
     </div>
   </div>
 </div>

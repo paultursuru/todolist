@@ -1,0 +1,37 @@
+<% tasks.each do |task| %>
+  <div class="task-and-comments">
+    <div class="task-card <%= task.priority %>">
+      <div class="task-title"><h6><%= task.title %></h6></div>
+      <div class="task-actions">
+        <div class="task-deadline"><p><%= distance_of_time_in_words(Time.now, task.deadline) %> left</p></div>
+        <a class="" data-toggle="collapse" href="#collapseComments-<%= task.id %>" role="button" aria-expanded="false" aria-controls="collapseComments-<%= task.id %>">
+          💬
+        </a>
+        <%= link_to "done !", mark_as_done_path(task), method: :post, remote: true unless task.done? %>
+        <%= link_to "cancel !", mark_as_cancelled_path(task), method: :post, remote: true unless task.cancelled? %>
+        <%= link_to "to do again !", mark_as_todo_path(task), method: :post, remote: true unless task.todo? %>
+        <%= link_to "🗑", task_path(task), method: :delete, remote: true %>
+      </div>
+    </div>
+    <div class="collapse collapse-comments" id="collapseComments-<%= task.id %>">
+      <div class="comments">
+        <% if policy(Comment).create? %>
+          <%= simple_form_for([ task, @comment ], remote: true) do |f| %>
+            <%= f.input :content, placeholder: "add comment..." %>
+            <div class="comment-submit"><%= f.submit "+" %></div>
+          <% end %>
+        <% end %>
+        <% unless task.comments.empty? %>
+          <div class="comment-cards">
+            <% task.comments.each do |comment| %>
+              <div class="comment-card">
+                <div class="comment-content"><p><%= comment.content %></p></div>
+                <%= link_to "🗑", comment_path(comment), method: :delete, remote: true %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
