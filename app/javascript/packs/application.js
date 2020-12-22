@@ -24,7 +24,7 @@ require("channels")
 
 // External imports
 import "bootstrap";
-import "../plugins/flatpickr"
+import {initFlatpickr } from "../plugins/flatpickr"
 import { deadlinesPrioritiesToggle } from "../plugins/deadlines_priorities_toggle"
 
 // Internal imports, e.g:
@@ -33,5 +33,6 @@ import { deadlinesPrioritiesToggle } from "../plugins/deadlines_priorities_toggl
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  initFlatpickr();
   deadlinesPrioritiesToggle();
 });
