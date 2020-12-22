@@ -32,8 +32,6 @@
 
 
 
-
-
 .task-cards {
   width: 345px;
   transition: all 150ms ease;
@@ -175,20 +173,39 @@
     .priorities {
       display: flex;
       justify-content: space-around;
-    }
-    .priorities a {
-      width: 50%;
-      text-align: center;
-      color: black;
-      padding: 5px 10px;
-      &:hover {
-        text-decoration: none;
-        color: white;
-        background: black;
+      a {
+        width: 50%;
+        text-align: center;
+        color: black;
+        padding: 5px 10px;
+        &:hover {
+          text-decoration: none;
+          color: white;
+          background: black;
+        }
+      }
+      a:first-child {
+        border-right: solid 1px;
       }
     }
-    .priorities a:first-child {
-      border-right: solid 1px;
+    .edit_task {
+      display: flex;
+      align-items: center;
+      label {
+        display: none;
+      }
+      .form-group {
+        margin: 0;
+        input {
+          background: white;
+          border: none;
+          cursor: pointer
+        }
+      }
+      .task_submit input {
+        border: none;
+        border-radius: 5px;
+      }
     }
   }
 }

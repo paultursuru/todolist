@@ -10,7 +10,7 @@
       <div class="task-title-and-actions">
         <div class="task-title"><h6><%= task.title %></h6></div>
         <div class="task-actions">
-          <%= link_to "back in to list !", mark_as_todo_path(task), method: :post, remote: true, class: 'action-btn todo-again-btn' unless task.todo? %>
+          <%= link_to "back in my tasks !", mark_as_todo_path(task), method: :post, remote: true, class: 'action-btn todo-again-btn' unless task.todo? %>
 
           <%#= link_to "🗑", task_path(task), method: :delete, remote: true %>
         </div>

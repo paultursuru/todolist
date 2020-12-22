@@ -17,4 +17,10 @@ class ApplicationController < ActionController::Base
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
+
+  def set_tasks
+    @tasks = policy_scope(Task)
+    @tasks_by_deadlines = @tasks.order(deadline: :asc)
+    @tasks_by_priorities = @tasks.order(priority: :desc)
+  end
 end
