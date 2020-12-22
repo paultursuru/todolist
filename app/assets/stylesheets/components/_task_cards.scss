@@ -100,9 +100,15 @@
         display: flex;
         justify-content: center;
         margin-top: 10px;
+        .action-btn:first-child {
+          border-radius: 10px 0 0 10px;
+        }
+        .action-btn:last-child {
+          border-radius: 0 10px 10px 0;
+        }
         .action-btn {
           padding: 5px 10px;
-          color: grey;
+          color: black;
           font-size: 12px;
           &:hover {
             color: white;
@@ -110,16 +116,22 @@
           }
           &.done-btn {
             border: solid 0.5px $success;
-            border-radius: 10px 0 0 10px;
+
             &:hover {
               background: $success;
             }
           }
           &.cancel-btn {
             border: solid 0.5px $danger;
-            border-radius: 0 10px 10px 0;
             &:hover {
               background: $danger;
+            }
+          }
+          &.todo-again-btn {
+            border: solid 0.5px $info;
+            border-radius: 10px;
+            &:hover {
+              background: $info;
             }
           }
         }
