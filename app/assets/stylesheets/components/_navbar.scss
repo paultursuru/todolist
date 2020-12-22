@@ -3,6 +3,7 @@
   position: sticky;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 .logout-btn {
   color: black;
@@ -13,6 +14,25 @@
   &:hover {
     color: white;
     text-decoration: none;
+    background: black;
+  }
+}
+#deadlines-and-priorities-toggle {
+  display: flex;
+  border: solid 1px;
+  p.deadlines-priorities-btn {
+    margin: 0;
+    padding: 5px 10px;
+    transition: all 125ms ease;
+  }
+  #by_priorities {
+    padding-left: 10px;
+  }
+  #by_deadlines {
+    padding-right: 10px;
+  }
+  .active {
+    color: white;
     background: black;
   }
 }

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="list-header">
     <h1>My list</h1>
-    <p><%= pluralize(@tasks.count, 'task') %> yet to do !</p>
+    <p><%= pluralize(@tasks_counter, 'task') %> yet to do !</p>
   </div>
   <% if policy(Task).create? %>
     <%= simple_form_for(@task, remote: true) do |f| %>
@@ -10,47 +10,14 @@
       <div class="task_submit"><%= f.submit "+" %></div>
     <% end %>
   <% end %>
-<div class="todo-and-done-tasks">
-  <% unless @tasks.empty? %>
-    <div id="tasks" class="task-cards">
-      <h5>To do</h5>
-      <% @tasks.each do |task| %>
-      <div class="task-and-comments">
-        <div class="task-card">
-          <div class="task-title"><h6><%= task.title %></h6></div>
-          <div class="task-actions">
-            <div class="task-deadline"><p><%= distance_of_time_in_words(Time.now, task.deadline) %> left</p></div>
-            <a class="" data-toggle="collapse" href="#collapseComments-<%= task.id %>" role="button" aria-expanded="false" aria-controls="collapseComments-<%= task.id %>">
-              💬
-            </a>
-            <%= link_to "🗑", task_path(task), method: :delete, remote: true %>
-          </div>
-        </div>
-        <div class="collapse collapse-comments" data-parent="#tasks" id="collapseComments-<%= task.id %>">
-          <div class="comments">
-            <% if policy(Comment).create? %>
-              <%= simple_form_for([ task, @comment ], remote: true) do |f| %>
-                <%= f.input :content, placeholder: "add comment..." %>
-                <div class="comment-submit"><%= f.submit "+" %></div>
-              <% end %>
-            <% end %>
-            <% unless task.comments.empty? %>
-              <div class="comment-cards">
-                <% task.comments.each do |comment| %>
-                  <div class="comment-card">
-                    <div class="comment-content"><p><%= comment.content %></p></div>
-                    <%= link_to "🗑", comment_path(comment), method: :delete, remote: true %>
-                  </div>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <% end %>
+  <div class="todo-and-done-tasks">
+    <h5>To do</h5>
+    <div id="tasks_by_deadlines" class="task-cards">
+      <%= render 'tasks_todo', tasks: @tasks_by_deadlines %>
     </div>
-  <% end %>
-
-</div>
+    <div id="tasks_by_priorities" class="task-cards d-none">
+      <%= render 'tasks_todo', tasks: @tasks_by_priorities %>
+    </div>
+  </div>
 </div>
 

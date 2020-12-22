@@ -30,6 +30,7 @@
 }
 .task-cards {
   width: 345px;
+  transition: all 150ms ease;
   .task-card {
     display: flex;
     height: 70px;
