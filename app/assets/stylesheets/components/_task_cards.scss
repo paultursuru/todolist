@@ -19,10 +19,10 @@
     margin: 0;
   }
   .task_title {
-    width: 60%;
+    width: 50%;
   }
   .task_deadline {
-    width: 15%;
+    width: 35%;
     input {
       background: white;
     }
@@ -30,12 +30,12 @@
 }
 .task-cards {
   width: 345px;
+  transition: all 150ms ease;
   .task-card {
     display: flex;
     height: 70px;
     width: 345px;
     align-items: center;
-    box-shadow: 0 0 10px lightgray;
     padding: 10px;
     border-radius: 10px;
     margin: 20px 0 0 0;
@@ -53,6 +53,15 @@
       a {
         padding: 0 10px;
       }
+    }
+    &.very_urgent {
+      box-shadow: 0 0 10px #ff00005c;
+    }
+    &.urgent {
+      box-shadow: 0 0 10px #ffff00a6;
+    }
+    &.normal{
+      box-shadow: 0 0 10px #00d50042;
     }
   }
   .task-and-comments {
