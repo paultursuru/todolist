@@ -32,8 +32,6 @@
 
 
 
-
-
 .task-cards {
   width: 345px;
   transition: all 150ms ease;
@@ -201,7 +199,12 @@
         input {
           background: white;
           border: none;
+          cursor: pointer
         }
+      }
+      .task_submit input {
+        border: none;
+        border-radius: 5px;
       }
     }
   }

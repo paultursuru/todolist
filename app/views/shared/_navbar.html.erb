@@ -1,9 +1,5 @@
 <div class="navbar-todo-poulpe">
   <% if user_signed_in? %>
     <%= link_to "← Log out", destroy_user_session_path, method: :delete, class: 'logout-btn' %>
-    <div id="deadlines-and-priorities-toggle">
-      <p id="by_deadlines" class="deadlines-priorities-btn">deadlines</p>
-      <p id="by_priorities" class="deadlines-priorities-btn active">priorities</p>
-    </div>
   <% end %>
 </div>

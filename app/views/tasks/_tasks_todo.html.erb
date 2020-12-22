@@ -67,7 +67,7 @@
         <div class="deadline-form">
             <%= simple_form_for(task, remote: true) do |f| %>
               <%= f.input :deadline, placeholder: "🗓", as: :string, required: true, input_html: {class: "datepicker"} %>
-              <div class="task_submit"><%= f.submit "+" %></div>
+              <div class="task_submit"><%= f.submit "save" %></div>
             <% end %>
         </div>
       </div>
