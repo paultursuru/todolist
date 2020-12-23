@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post 'mark_as_very_urgent/:id', to: 'tasks#mark_as_very_urgent', as: 'mark_as_very_urgent'
   post 'mark_as_urgent/:id', to: 'tasks#mark_as_urgent', as: 'mark_as_urgent'
   post 'mark_as_normal/:id', to: 'tasks#mark_as_normal', as: 'mark_as_normal'
+  patch 'move/:id', to: 'tasks#move'
   resources :comments, only: :destroy
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

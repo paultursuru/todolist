@@ -26,13 +26,17 @@
         <div class="d-flex"><h5 class="mr-2">To do</h5> <p>(<%= todo(@tasks).count %>)</p></div>
         <div id="deadlines-and-priorities-toggle">
           <p id="by_deadlines" class="deadlines-priorities-btn">deadlines</p>
-          <p id="by_priorities" class="deadlines-priorities-btn active">priorities</p>
+          <p id="by_positions" class="deadlines-priorities-btn">my order</p>
+          <p id="by_priorities" class="deadlines-priorities-btn">priorities</p>
         </div>
       </div>
-      <div id="tasks_by_deadlines" class="task-cards d-none">
+      <div id="tasks_by_deadlines" class="task-cards main-lists d-none">
         <%= render 'tasks/tasks_todo', tasks: todo(@tasks_by_deadlines) %>
       </div>
-      <div id="tasks_by_priorities" class="task-cards">
+      <div id="tasks_by_positions" class="task-cards main-lists d-none" data-controller="drag" data-drag-url="move/:id">
+        <%= render 'tasks/draggable_tasks_todo', tasks: todo(@tasks_by_positions) %>
+      </div>
+      <div id="tasks_by_priorities" class="task-cards main-lists d-none">
         <%= render 'tasks/tasks_todo', tasks: todo(@tasks_by_priorities) %>
       </div>
     </div>
