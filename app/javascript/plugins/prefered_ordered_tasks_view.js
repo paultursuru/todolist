@@ -24,8 +24,8 @@ const preferedOrderedTasksView = () => {
       // hide not prefered view
       byPrioritiesBtn.classList.remove('active');
       byPositionsBtn.classList.remove('active');
-      byPrioritiesView.classList.remove('d-none');
-      byPositionsView.classList.remove('d-none');
+      byPrioritiesView.classList.add('d-none');
+      byPositionsView.classList.add('d-none');
     } else if (document.cookie.split(';').some((item) => item.includes('prefered_view=by_priorities'))) {
       // show prefered view
       byPrioritiesBtn.classList.add('active');
@@ -34,8 +34,8 @@ const preferedOrderedTasksView = () => {
       // hide not prefered view
       byDeadlinesBtn.classList.remove('active');
       byPositionsBtn.classList.remove('active');
-      byDeadlinesView.classList.remove('d-none');
-      byPositionsView.classList.remove('d-none');
+      byDeadlinesView.classList.add('d-none');
+      byPositionsView.classList.add('d-none');
     } else if (document.cookie.split(';').some((item) => item.includes('prefered_view=by_positions'))) {
       // show prefered view
       byPositionsBtn.classList.add('active');
@@ -44,8 +44,8 @@ const preferedOrderedTasksView = () => {
       // hide not prefered view
       byDeadlinesBtn.classList.remove('active');
       byPrioritiesBtn.classList.remove('active');
-      byDeadlinesView.classList.remove('d-none');
-      byPrioritiesView.classList.remove('d-none');
+      byDeadlinesView.classList.add('d-none');
+      byPrioritiesView.classList.add('d-none');
     }
   }
 };
