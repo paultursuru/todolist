@@ -137,6 +137,9 @@
     h6, p {
       margin: 0;
     }
+    &.grabbable-task {
+      cursor: grab;
+    }
     .task-infos {
       display: flex;
       position: absolute;

@@ -1,6 +1,6 @@
 <% tasks.each do |task| %>
   <div class="task-and-comments" data-id="<%= task.id %>">
-    <div class="task-card <%= task.priority %>">
+    <div class="task-card <%= task.priority %> grabbable-task">
       <div class="task-infos">
         <% if (task.deadline - Date.today).to_i >= 1 %>
           <a class="deadline-sticker upcoming" data-toggle="collapse" href="#collapseDeadline-<%= task.id %>" role="button" aria-expanded="false" aria-controls="#collapseDeadline-<%= task.id %>">

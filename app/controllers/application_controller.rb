@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
   def set_tasks
     @tasks = policy_scope(Task)
-    @tasks_by_priorities = @tasks.order(position: :asc)
+    @tasks_by_positions = @tasks.order(position: :asc)
     @tasks_by_deadlines = @tasks.order(deadline: :asc)
     @tasks_by_priorities = @tasks.order(priority: :desc)
   end
