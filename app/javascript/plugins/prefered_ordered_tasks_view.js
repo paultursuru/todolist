@@ -9,36 +9,44 @@ const preferedOrderedTasksView = () => {
   let byPrioritiesView = document.getElementById('tasks_by_positions')
   let byPositionsView = document.getElementById('tasks_by_positions')
 
-  if (document.cookie.split(';').some((item) => item.includes('prefered_view=by_deadlines'))) {
-    // show prefered view
-    byDeadlinesBtn.classList.add('active');
-    byDeadlinesView.classList.remove('d-none');
+  if (document.cookie.split(';').some((item) => item.trim().startsWith('prefered_view='))) {
 
-    // hide not prefered view
-    byPrioritiesBtn.classList.remove('active');
-    byPositionsBtn.classList.remove('active');
-    byPrioritiesView.classList.remove('d-none');
-    byPositionsView.classList.remove('d-none');
-  } else if (document.cookie.split(';').some((item) => item.includes('prefered_view=by_priorities'))) {
-    // show prefered view
-    byPrioritiesBtn.classList.add('active');
-    byPrioritiesView.classList.remove('d-none');
+  } else { document.cookie = "prefered_view=by_positions" }
 
-    // hide not prefered view
-    byDeadlinesBtn.classList.remove('active');
-    byPositionsBtn.classList.remove('active');
-    byDeadlinesView.classList.remove('d-none');
-    byPositionsView.classList.remove('d-none');
-  } else if (document.cookie.split(';').some((item) => item.includes('prefered_view=by_positions'))) {
-    // show prefered view
-    byPositionsBtn.classList.add('active');
-    byPositionsView.classList.remove('d-none');
+  // a weird way to check if user_signed_id to avoid js errors, any of the 6 elements from line 3 to 10 exists only if user_signed_in
+  if ( byDeadlinesBtn ) {
 
-    // hide not prefered view
-    byDeadlinesBtn.classList.remove('active');
-    byPrioritiesBtn.classList.remove('active');
-    byDeadlinesView.classList.remove('d-none');
-    byPrioritiesView.classList.remove('d-none');
+    if (document.cookie.split(';').some((item) => item.includes('prefered_view=by_deadlines'))) {
+      // show prefered view
+      byDeadlinesBtn.classList.add('active');
+      byDeadlinesView.classList.remove('d-none');
+
+      // hide not prefered view
+      byPrioritiesBtn.classList.remove('active');
+      byPositionsBtn.classList.remove('active');
+      byPrioritiesView.classList.remove('d-none');
+      byPositionsView.classList.remove('d-none');
+    } else if (document.cookie.split(';').some((item) => item.includes('prefered_view=by_priorities'))) {
+      // show prefered view
+      byPrioritiesBtn.classList.add('active');
+      byPrioritiesView.classList.remove('d-none');
+
+      // hide not prefered view
+      byDeadlinesBtn.classList.remove('active');
+      byPositionsBtn.classList.remove('active');
+      byDeadlinesView.classList.remove('d-none');
+      byPositionsView.classList.remove('d-none');
+    } else if (document.cookie.split(';').some((item) => item.includes('prefered_view=by_positions'))) {
+      // show prefered view
+      byPositionsBtn.classList.add('active');
+      byPositionsView.classList.remove('d-none');
+
+      // hide not prefered view
+      byDeadlinesBtn.classList.remove('active');
+      byPrioritiesBtn.classList.remove('active');
+      byDeadlinesView.classList.remove('d-none');
+      byPrioritiesView.classList.remove('d-none');
+    }
   }
 };
 
