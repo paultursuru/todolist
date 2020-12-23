@@ -26,13 +26,17 @@
       </div>
     </div>
     <div class="done-tasks">
-      <div class="status-infos"><h5 class="mr-2">Done</h5><p>(<%= done(@tasks).count %>)</p></div>
+      <div class="status-infos">
+        <div class="d-flex"><h5 class="mr-2">Done</h5><p>(<%= done(@tasks).count %>)</p></div>
+      </div>
       <div class="task-cards">
         <%= render 'tasks/done_tasks', tasks: done(@tasks) %>
       </div>
     </div>
     <div class="cancelled-tasks">
-      <div class="status-infos"><h5 class="mr-2">Cancelled</h5><p>(<%= cancelled(@tasks).count %>)</p></div>
+      <div class="status-infos">
+        <div class="d-flex"><h5 class="mr-2">Cancelled</h5><p>(<%= cancelled(@tasks).count %>)</p></div>
+      </div>
       <div class="task-cards">
         <%= render 'tasks/cancelled_tasks', tasks: cancelled(@tasks) %>
       </div>
