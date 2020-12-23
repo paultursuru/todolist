@@ -36,6 +36,12 @@ class TasksController < ApplicationController
     end
   end
 
+  def move
+    authorize @task
+    @task.insert_at(params[:position].to_i)
+    head :ok
+  end
+
   def mark_as_done
     authorize @task
     @task.done!

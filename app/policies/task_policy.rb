@@ -17,6 +17,10 @@ class TaskPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def move?
+    record.user == user
+  end
+
   def mark_as_done?
     record.user == user
   end
