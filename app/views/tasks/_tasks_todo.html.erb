@@ -66,7 +66,7 @@
       <div class="collapse collapse-comments" id="collapseDeadline-<%= task.id %>">
         <div class="deadline-form">
             <%= simple_form_for(task, remote: true) do |f| %>
-              <%= f.input :deadline, placeholder: "🗓", as: :string, required: true, input_html: {class: "datepicker"} %>
+              <%= f.input :deadline, placeholder: "#{task.deadline.strftime("%-d %B %Y")}", as: :string, required: true, input_html: {class: "datepicker"} %>
               <div class="task_submit"><%= f.submit "save" %></div>
             <% end %>
         </div>
