@@ -26,6 +26,7 @@ require("channels")
 import "bootstrap";
 import {initFlatpickr } from "../plugins/flatpickr"
 import { deadlinesPrioritiesToggle } from "../plugins/deadlines_priorities_toggle"
+import { preferedOrderedTasksView } from "../plugins/prefered_ordered_tasks_view"
 import { addTaskBtnToggle } from "../plugins/add_task_btn_toggle"
 
 // Internal imports, e.g:
@@ -36,6 +37,7 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   initFlatpickr();
   deadlinesPrioritiesToggle();
+  preferedOrderedTasksView();
   addTaskBtnToggle();
 });
 
