@@ -34,7 +34,7 @@
         <%= render 'tasks/tasks_todo', tasks: todo(@tasks_by_deadlines) %>
       </div>
       <div id="tasks_by_positions" class="task-cards main-lists" data-controller="drag" data-drag-url="move/:id">
-        <%= render 'tasks/draggable_tasks_todo', tasks: todo(@tasks_by_priorities) %>
+        <%= render 'tasks/draggable_tasks_todo', tasks: todo(@tasks_by_positions) %>
       </div>
       <div id="tasks_by_priorities" class="task-cards main-lists d-none">
         <%= render 'tasks/tasks_todo', tasks: todo(@tasks_by_priorities) %>
