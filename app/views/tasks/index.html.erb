@@ -4,8 +4,19 @@
   </div>
   <% if policy(Task).create? %>
     <%= simple_form_for(@task, remote: true) do |f| %>
-      <%= f.input :title, placeholder: "new task.." %>
-      <%= f.input :deadline, placeholder: "🗓", as: :string, required: true, input_html: {class: "datepicker"} %>
+      <div class="form-task-title-and-deadline">
+        <%= f.input :title, placeholder: "new task.." %>
+        <div class="deadline-with-calendar text-center">
+          <p>🗓</p>
+          <%= f.input :deadline, placeholder: "#{Date.today.strftime("%-d %b %y")}", as: :string, required: true, input_html: {class: "datepicker"} %>
+        </div>
+      </div>
+      <%= f.input :priority, as: :radio_buttons,
+                  collection_wrapper_tag: 'div',
+                  collection_wrapper_class: 'category-wrapper',
+                  item_wrapper_class: 'category-item',
+                  input_html: {class: 'category-selector'},
+                  collection: [['normal', 'normal'], ['urgent', 'urgent'], ['very_urgent', 'high priority']], label_method: :second, value_method: :first%>
       <div class="task_submit"><%= f.submit "+" %></div>
     <% end %>
   <% end %>

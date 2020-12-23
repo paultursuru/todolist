@@ -7,6 +7,9 @@ class Task < ApplicationRecord
   enum status: [:todo, :done, :cancelled]
   enum priority: [:normal, :urgent, :very_urgent]
 
+  # PRIORITIES = ["normal", "urgent", "very urgent"]
+
+
   before_create :set_deadline, if: :deadline_nil_or_past
 
   def deadline_nil_or_past
