@@ -1,16 +1,17 @@
 const deadlinesPrioritiesToggle = () => {
-  $('#by_deadlines').click(function(){
-    $(this).toggleClass("active");
-    $('#by_priorities').toggleClass("active");
-    $('#tasks_by_deadlines').toggleClass("d-none");
-    $('#tasks_by_priorities').toggleClass("d-none");
-  });
-  $('#by_priorities').click(function(){
-    $(this).toggleClass("active");
-    $('#by_deadlines').toggleClass("active");
-    $('#tasks_by_priorities').toggleClass("d-none");
-    $('#tasks_by_deadlines').toggleClass("d-none");
-  });
+  const sortingBtns = document.getElementsByClassName('deadlines-priorities-btn');
+  const taskCardsList = document.getElementsByClassName('main-lists');
+
+  for (let item of sortingBtns) {
+    item.addEventListener("click", () => {
+      for (let oldlink of sortingBtns) { oldlink.classList.remove('active'); };
+      item.classList.add('active');
+      let listToToggleId = `tasks_${item.id}`
+      let visibleList = document.getElementById(listToToggleId)
+      for (let taskList of taskCardsList) { taskList.classList.add('d-none'); };
+      visibleList.classList.remove('d-none');
+    });
+  }
 };
 
 export { deadlinesPrioritiesToggle };
