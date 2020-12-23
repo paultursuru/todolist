@@ -1,15 +1,16 @@
 
 #new_task {
   display: flex;
-  height: 70px;
+  flex-direction: column;
+  min-height: 150px;
   width: 345px;
-  align-items: center;
+  align-items: flex-start;
   box-shadow: 0 0 10px lightgray;
   padding: 10px;
   border-radius: 10px;
-  margin: 20px 0;
+  margin: 40px 0 60px 0;
   justify-content: space-between;
-  label {
+  label, legend {
     display: none;
   }
   input {
@@ -17,14 +18,101 @@
   }
   .form-group {
     margin: 0;
+    width: 100%;
   }
-  .task_title {
-    width: 50%;
+  .form-task-title-and-deadline {
+    display: flex;
+    .task_title {
+      width: 65%;
+    }
+    .deadline-with-calendar.text-center {
+      width: 35%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      p {
+        margin-bottom: 5px;
+      }
+      .task_deadline {
+        width: 110px;
+        input {
+          background: transparent;
+        }
+      }
+    }
   }
-  .task_deadline {
-    width: 35%;
+  .task_priority {
+    margin: 10px 0;
+    label {
+      display: block;
+    }
+  }
+  .category-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .category-item {
+  }
+
+  .category-selector {
+    position: absolute;
+    transform: scale(0);
+  }
+
+  .category-selector + label {
+    display: block;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 12px;
+    text-align: left;
+    padding: 5px 12px;
+    border: 1px solid #EAEAEA;
+    border-radius: 4px;
+    background-color: white;
+  }
+
+  .category-selector:checked + label {
+    color: white !important;
+  }
+  #task_priority_normal + label {
+    color: $success;
+  }
+
+  #task_priority_normal:checked + label {
+    background-color: $success ;
+    border-color: $success ;
+  }
+
+
+  #task_priority_urgent + label {
+    color: $info;
+  }
+
+  #task_priority_urgent:checked + label {
+    background-color: $info ;
+    border-color: $info ;
+  }
+
+
+  #task_priority_very_urgent + label {
+    color: $danger;
+  }
+
+  #task_priority_very_urgent:checked + label {
+    background-color: $danger ;
+    border-color: $danger ;
+  }
+  .task_submit {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
     input {
-      background: white;
+      border-radius: 50%;
+      background: black;
+      color: white;
     }
   }
 }
