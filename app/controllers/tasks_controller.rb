@@ -10,6 +10,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.user = current_user
+
     authorize @task
 
     if @task.save
