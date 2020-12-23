@@ -1,4 +1,4 @@
-<div class="container py-5">
+<div class="container py-5" id="main-container">
   <div class="list-header">
     <h1>My list</h1>
   </div>
@@ -7,8 +7,8 @@
       <div class="form-task-title-and-deadline">
         <%= f.input :title, placeholder: "new task.." %>
         <div class="deadline-with-calendar text-center">
-          <p>🗓</p>
-          <%= f.input :deadline, placeholder: "#{Date.today.strftime("%-d %b %y")}", as: :string, required: true, input_html: {class: "datepicker"} %>
+
+          <%= f.input :deadline, label: "🗓", placeholder: "#{Date.today.strftime("%-d %b %y")}", as: :string, required: true, input_html: {class: "datepicker"} %>
         </div>
       </div>
       <%= f.input :priority, as: :radio_buttons,

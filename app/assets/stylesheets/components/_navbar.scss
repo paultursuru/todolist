@@ -1,12 +1,37 @@
 .navbar-todo-poulpe {
   height: 50px;
   position: fixed;
-  width: 100vw;
-  padding: 0 150px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: white;
+  background: transparent;
+  z-index: 100;
+  background: linear-gradient(white 65%, transparent 100%);
+  .new-task-btn {
+    background: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    position: absolute;
+    border: solid 1px black;
+    top: -100px;
+    transition: all 150ms ease;
+    margin: 0 10px 0 0;
+  }
+  &.scrolled-nav {
+    .new-task-btn {
+      position: initial;
+      width: max-content;
+      opacity: 1;
+      &:hover {
+        color: black;
+        text-decoration: none;
+        background: white;
+      }
+    }
+  }
 }
 .logout-btn {
   color: black;
@@ -14,6 +39,9 @@
   transition: all 175ms ease;
   padding: 5px 10px;
   border-radius: 5px;
+  border: solid 1px;
+  margin: 0 0 0 10px;
+  background: white;
   &:hover {
     color: white;
     text-decoration: none;
