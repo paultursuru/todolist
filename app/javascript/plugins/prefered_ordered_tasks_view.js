@@ -6,9 +6,10 @@ const preferedOrderedTasksView = () => {
 
   // get prefered views
   let byDeadlinesView = document.getElementById('tasks_by_deadlines')
-  let byPrioritiesView = document.getElementById('tasks_by_positions')
+  let byPrioritiesView = document.getElementById('tasks_by_priorities')
   let byPositionsView = document.getElementById('tasks_by_positions')
 
+  // generate default prefered_view cookie
   if (document.cookie.split(';').some((item) => item.trim().startsWith('prefered_view='))) {
 
   } else { document.cookie = "prefered_view=by_positions" }
