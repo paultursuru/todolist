@@ -1,6 +1,9 @@
 <% tasks.each do |task| %>
   <div class="task-and-comments">
-    <div class="task-card <%= task.priority %>">
+      <% if policy(task).destroy? %>
+        <%= link_to "❌", task_path(task), method: :delete, remote: true, class: 'destroy-task-btn', data: {title: 'Delete task', confirm: "You are about to delete this task forever, are you sure ?"} %>
+      <% end %>
+    <div class="task-card">
       <div class="task-infos">
         <p class="deadline-sticker <%= "bg-success" if task.done? %> <%= "bg-warning" if task.cancelled? %>"><%= task.status %></p>
         <a class="deadline-sticker comment-sticker" data-toggle="collapse" href="#collapseComments-<%= task.id %>" role="button" aria-expanded="false" aria-controls="collapseComments-<%= task.id %>">
@@ -11,8 +14,6 @@
         <div class="task-title"><h6><%= task.title %></h6></div>
         <div class="task-actions">
           <%= link_to "back in my tasks !", mark_as_todo_path(task), method: :post, remote: true, class: 'action-btn todo-again-btn' unless task.todo? %>
-
-          <%#= link_to "🗑", task_path(task), method: :delete, remote: true %>
         </div>
       </div>
     </div>

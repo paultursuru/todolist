@@ -1,3 +1,18 @@
+<% if tasks.empty? %>
+  <div class="task-and-comments">
+    <div class="task-card">
+      <div class="task-infos">
+      </div>
+      <div class="task-title-and-actions">
+        <div class="task-title"><h5>Your todo list is empty !</h5></div>
+        <div class="task-title"><h6>Add a new task to your list using the form just above 😀</h6></div>
+        <div class="task-actions">
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <% tasks.each do |task| %>
   <div class="task-and-comments">
     <div class="task-card <%= task.priority %>">
@@ -12,7 +27,7 @@
               today
             </a>
           <% else %>
-            <a class="deadline-sticker today" data-toggle="collapse" href="#collapseDeadline-<%= task.id %>" role="button" aria-expanded="false" aria-controls="#collapseDeadline-<%= task.id %>">
+            <a class="deadline-sticker passed" data-toggle="collapse" href="#collapseDeadline-<%= task.id %>" role="button" aria-expanded="false" aria-controls="#collapseDeadline-<%= task.id %>">
               passed
             </a>
           <% end %>

@@ -1,3 +1,18 @@
+<% if tasks.empty? %>
+  <div class="task-and-comments">
+    <div class="task-card">
+      <div class="task-infos">
+      </div>
+      <div class="task-title-and-actions">
+        <div class="task-title"><h5>Your todo list is empty !</h5></div>
+        <div class="task-title"><h6>Add a new task to your list using the form just above 😀</h6></div>
+        <div class="task-actions">
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <% tasks.each do |task| %>
   <div class="task-and-comments" data-id="<%= task.id %>">
     <div class="task-card <%= task.priority %> grabbable-task">
@@ -12,7 +27,7 @@
               today
             </a>
           <% else %>
-            <a class="deadline-sticker today" data-toggle="collapse" href="#collapseDeadline-<%= task.id %>" role="button" aria-expanded="false" aria-controls="#collapseDeadline-<%= task.id %>">
+            <a class="deadline-sticker passed" data-toggle="collapse" href="#collapseDeadline-<%= task.id %>" role="button" aria-expanded="false" aria-controls="#collapseDeadline-<%= task.id %>">
               passed
             </a>
           <% end %>
@@ -38,13 +53,10 @@
         </div>
       </div>
       <div class="task-title-and-actions">
-        <div class="task-title"><h6><%= task.title %></h6></div>
+        <div class="task-title"><h6><%= task.title %></h6><h6>↕</h6></div>
         <div class="task-actions">
           <%= link_to "it's done !", mark_as_done_path(task), method: :post, remote: true, class: 'action-btn done-btn' unless task.done? %>
           <%= link_to "cancel this..", mark_as_cancelled_path(task), method: :post, remote: true, class: 'action-btn cancel-btn' unless task.cancelled? %>
-
-          <%#= link_to "to do again !", mark_as_todo_path(task), method: :post, remote: true unless task.todo? %>
-          <%#= link_to "🗑", task_path(task), method: :delete, remote: true %>
         </div>
       </div>
     </div>
