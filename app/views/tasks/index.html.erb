@@ -5,7 +5,7 @@
   <% if policy(Task).create? %>
     <%= simple_form_for(@task, remote: true) do |f| %>
       <div class="form-task-title-and-deadline">
-        <%= f.input :title, placeholder: "new task.." %>
+        <%= f.input :title, placeholder: "new task..", input_html: { autofocus: true } %>
         <div class="deadline-with-calendar text-center">
 
           <%= f.input :deadline, label: "🗓", placeholder: "#{Date.today.strftime("%-d %b %y")}", as: :string, required: true, input_html: {class: "datepicker"} %>
