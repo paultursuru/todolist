@@ -3,9 +3,10 @@
     <h1>My list</h1>
   </div>
   <% if policy(Task).create? %>
+    <h5 class="mt-5">Add a new task</h5>
     <%= simple_form_for(@task, remote: true) do |f| %>
       <div class="form-task-title-and-deadline">
-        <%= f.input :title, placeholder: "new task.." %>
+        <%= f.input :title, placeholder: "new task..", input_html: { autofocus: true } %>
         <div class="deadline-with-calendar text-center">
 
           <%= f.input :deadline, label: "🗓", placeholder: "#{Date.today.strftime("%-d %b %y")}", as: :string, required: true, input_html: {class: "datepicker"} %>
@@ -23,7 +24,7 @@
   <div class="todo-and-done-tasks">
     <div class="to-do-tasks">
       <div class="status-infos">
-        <div class="d-flex"><h5 class="mr-2">To do</h5> <p>(<%= todo(@tasks).count %>)</p></div>
+        <div class="list-title-and-count"><h5 class="mr-2">To do</h5> <p>(<%= todo(@tasks).count %>)</p></div>
         <div id="deadlines-and-priorities-toggle">
           <p id="by_deadlines" class="deadlines-priorities-btn">deadlines</p>
           <p id="by_positions" class="deadlines-priorities-btn active">my order</p>
@@ -42,18 +43,18 @@
     </div>
     <div class="done-tasks">
       <div class="status-infos">
-        <div class="d-flex"><h5 class="mr-2">Done</h5><p>(<%= done(@tasks).count %>)</p></div>
+        <div class="list-title-and-count"><h5 class="mr-2">Done</h5><p>(<%= done(@tasks).count %>)</p></div>
       </div>
       <div class="task-cards">
-        <%= render 'tasks/done_tasks', tasks: done(@tasks) %>
+        <%= render 'tasks/done_or_cancelled_tasks', tasks: done(@tasks) %>
       </div>
     </div>
     <div class="cancelled-tasks">
       <div class="status-infos">
-        <div class="d-flex"><h5 class="mr-2">Cancelled</h5><p>(<%= cancelled(@tasks).count %>)</p></div>
+        <div class="list-title-and-count"><h5 class="mr-2">Cancelled</h5><p>(<%= cancelled(@tasks).count %>)</p></div>
       </div>
       <div class="task-cards">
-        <%= render 'tasks/cancelled_tasks', tasks: cancelled(@tasks) %>
+        <%= render 'tasks/done_or_cancelled_tasks', tasks: cancelled(@tasks) %>
       </div>
     </div>
   </div>

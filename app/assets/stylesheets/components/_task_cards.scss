@@ -8,7 +8,7 @@
   box-shadow: 0 0 10px lightgray;
   padding: 10px;
   border-radius: 10px;
-  margin: 40px 0 60px 0;
+  margin: 20px 0 60px 0;
   justify-content: space-between;
   label, legend {
     display: none;
@@ -145,15 +145,20 @@
       position: absolute;
       top: -12px;
       .deadline-sticker {
-        padding: 2px 5px;
+        padding: 4px 5px;
+        display: flex;
+        align-items: center;
+        transition: all 125ms ease-in;
         font-size: 12px;
         border-radius: 5px;
         margin-right: 5px;
         color: white;
         text-decoration: none;
+        height: 22px;
         &:hover {
           color:white;
           text-decoration: none;
+          height: 26px;
         }
         &.upcoming {
           background: $success;
@@ -197,30 +202,37 @@
         }
         .action-btn {
           padding: 5px 10px;
-          color: black;
           font-size: 12px;
+          transition: all 125ms ease;
           &:hover {
-            color: white;
             text-decoration: none;
           }
           &.done-btn {
-            border: solid 0.5px $success;
-
+            border: solid 1px $success;
+            color: $success;
             &:hover {
               background: $success;
+              color: white;
+              font-weight: bold;
             }
           }
           &.cancel-btn {
-            border: solid 0.5px $danger;
+            border: solid 1px $danger;
+            color: $danger;
             &:hover {
               background: $danger;
+              color: white;
+              font-weight: bold;
             }
           }
           &.todo-again-btn {
-            border: solid 0.5px $info;
+            border: solid 1px $info;
             border-radius: 10px;
+            color: $info;
             &:hover {
               background: $info;
+              color: white;
+              font-weight: bold;
             }
           }
         }
@@ -261,24 +273,35 @@
         }
       }
     }
-    .priorities {
+    .priority-and-priorities-btn, .deadline-and-calendar-btn, .comment-and-comments-btn {
       display: flex;
-      justify-content: space-around;
-      a {
-        width: 50%;
-        text-align: center;
-        color: black;
-        padding: 5px 10px;
-        &:hover {
-          text-decoration: none;
-          color: white;
-          background: black;
+    }
+    .priority-and-priorities-btn {
+      position: relative;
+      flex-direction: column;
+      align-items: center;
+      .collapse-priorities {
+        position: absolute;
+        top: 30px;
+        .priorities {
+          display: flex;
+          justify-content: space-around;
+          a {
+            width: max-content;
+            font-size: 12px;
+            text-align: center;
+            height: 22px;
+            transition: all 125ms ease-in;
+            &:hover {
+              text-decoration: none;
+              padding: 5px 10px;
+              height: 28px;
+            }
+          }
         }
       }
-      a:first-child {
-        border-right: solid 1px;
-      }
     }
+
     .edit_task {
       display: flex;
       align-items: center;

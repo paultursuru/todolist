@@ -2,7 +2,7 @@
   <div class="task-and-comments">
     <div class="task-card <%= task.priority %>">
       <div class="task-infos">
-        <p class="deadline-sticker bg-success">done</p>
+        <p class="deadline-sticker <%= "bg-success" if task.done? %> <%= "bg-warning" if task.cancelled? %>"><%= task.status %></p>
         <a class="deadline-sticker comment-sticker" data-toggle="collapse" href="#collapseComments-<%= task.id %>" role="button" aria-expanded="false" aria-controls="collapseComments-<%= task.id %>">
           <%= pluralize( task.comments.count, "comment") %>
         </a>
@@ -34,13 +34,6 @@
             <% end %>
           </div>
         <% end %>
-      </div>
-    </div>
-    <div class="collapse collapse-comments collapse-priorities" id="collapsePriority-<%= task.id %>">
-      <div class="priorities">
-        <%= link_to "very urgent", mark_as_very_urgent_path(task), method: :post, remote: true unless task.very_urgent? %>
-        <%= link_to "urgent", mark_as_urgent_path(task), method: :post, remote: true unless task.urgent? %>
-        <%= link_to "not so urgent", mark_as_normal_path(task), method: :post, remote: true unless task.normal? %>
       </div>
     </div>
   </div>

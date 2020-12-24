@@ -1,7 +1,9 @@
 html {
   scroll-behavior: smooth;
 }
-
+.to-do-tasks, .done-tasks, .cancelled-tasks {
+  margin-bottom: 60px;
+}
 .todo-and-done-tasks {
   display: flex;
   flex-wrap: wrap;
@@ -9,6 +11,21 @@ html {
   .status-infos {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
+    align-items: center;
+    .list-title-and-count {
+      display: flex;
+      align-items: center;
+      h5, p {
+        margin: 0;
+      }
+      h5 {
+        font-size: 28px;
+      }
+      p {
+        font-size: 22px;
+      }
+    }
     #deadlines-and-priorities-toggle {
       display: flex;
       border: solid 1px;
