@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <div id="navbar_todo" class="navbar-todo-poulpe">
-      <%= link_to "← Log out", destroy_user_session_path, method: :delete, class: 'logout-btn' %>
+      <%= link_to "← Log out", destroy_user_session_path, method: :delete, class: 'login-logout-btn' %>
       <p id='new_task_btn' class='new-task-btn'>add a new task</p>
   </div>
 <% end %>
