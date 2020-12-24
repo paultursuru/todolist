@@ -29,12 +29,9 @@ import { preferedOrderedTasksView } from "../plugins/prefered_ordered_tasks_view
 import { deadlinesPrioritiesToggle } from "../plugins/deadlines_priorities_toggle"
 import { addTaskBtnToggle } from "../plugins/add_task_btn_toggle"
 
-// Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
+initFlatpickr();
 
 document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
   initFlatpickr();
   preferedOrderedTasksView();
   deadlinesPrioritiesToggle();

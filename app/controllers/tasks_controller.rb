@@ -10,28 +10,36 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.user = current_user
+    set_tasks
+    @comment = Comment.new
 
     authorize @task
 
     if @task.save
-      redirect_to root_path
+      respond_to do |format|
+        format.html
+        format.js { render :updated_todos }
+      end
     else
-      set_tasks
       flash[:alert] = "Please fill all fields"
-      @comment = Comment.new
       render :index
     end
   end
 
   def update
+    set_tasks
+    @comment = Comment.new
+
     authorize @task
     @task.update(task_params)
-    if @task.save
-      redirect_to root_path
-    else
-      set_tasks
 
-      @comment = Comment.new
+    if @task.save
+      respond_to do |format|
+        format.html
+        format.js { render :updated_todos }
+      end
+    else
+      flash[:alert] = "Something went wrong"
       render :index
     end
   end
