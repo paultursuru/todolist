@@ -3,6 +3,7 @@
     <h1>My list</h1>
   </div>
   <% if policy(Task).create? %>
+    <h5 class="mt-5">Add a new task</h5>
     <%= simple_form_for(@task, remote: true) do |f| %>
       <div class="form-task-title-and-deadline">
         <%= f.input :title, placeholder: "new task..", input_html: { autofocus: true } %>
