@@ -119,10 +119,13 @@
 
 
 
-
 .task-cards {
-  width: 345px;
+  width: 100%;
   transition: all 150ms ease;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
   .task-card {
     position: relative;
     display: flex;
@@ -189,6 +192,8 @@
       width: 100%;
       .task-title {
         padding: 15px;
+        display: flex;
+        justify-content: space-between;
       }
       .task-actions {
         display: flex;
@@ -253,6 +258,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-right: 25px;
     .collapse-comments {
       width: 300px;
       box-shadow: 0 5px 10px lightgray;
@@ -271,6 +277,25 @@
         input {
           border: none;
         }
+      }
+    }
+    .destroy-task-btn {
+      position: absolute;
+      right: 0px;
+      top: 20px;
+      background: white;
+      padding: 5px 8px;
+      border-radius: 50%;
+      // box-shadow: 0 0 5px gray;
+      font-size: 10px;
+      opacity: 0;
+      z-index: -1;
+      transition: all 150ms ease;
+    }
+    &:hover {
+      .destroy-task-btn {
+        opacity: 1;
+        z-index: 1;
       }
     }
     .priority-and-priorities-btn, .deadline-and-calendar-btn, .comment-and-comments-btn {
