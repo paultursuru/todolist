@@ -19,6 +19,7 @@
     top: -100px;
     transition: all 150ms ease;
     margin: 0 10px 0 0;
+    cursor: pointer;
   }
   &.scrolled-nav {
     .new-task-btn {
