@@ -1,4 +1,4 @@
-<div class="container py-5" id="main-container">
+<div class="container py-5" id="main-container" data-controller="tasks">
   <div class="list-header">
     <h1>My list</h1>
   </div>
@@ -18,7 +18,7 @@
                   item_wrapper_class: 'category-item',
                   input_html: {class: 'category-selector'},
                   collection: [['normal', 'normal'], ['urgent', 'urgent'], ['very_urgent', 'high priority']], label_method: :second, value_method: :first%>
-      <div class="task_submit"><%= f.submit "+" %></div>
+      <div class="task_submit" data-action="click->tasks#refresh"><%= f.submit "+" %></div>
     <% end %>
   <% end %>
   <div class="todo-and-done-tasks">
@@ -31,15 +31,18 @@
           <p id="by_priorities" class="deadlines-priorities-btn">priorities</p>
         </div>
       </div>
-      <div id="tasks_by_deadlines" class="task-cards main-lists d-none">
-        <%= render 'tasks/tasks_todo', tasks: todo(@tasks_by_deadlines) %>
+      <div >
       </div>
-      <div id="tasks_by_positions" class="task-cards main-lists" data-controller="drag" data-drag-url="move/:id">
-        <%= render 'tasks/draggable_tasks_todo', tasks: todo(@tasks_by_positions) %>
-      </div>
-      <div id="tasks_by_priorities" class="task-cards main-lists d-none">
-        <%= render 'tasks/tasks_todo', tasks: todo(@tasks_by_priorities) %>
-      </div>
+        <div id="tasks_by_deadlines" class="task-cards main-lists d-none" data-target="tasks.listsDeadlines" >
+          <%= render 'tasks/tasks_todo', tasks: todo(@tasks_by_deadlines) %>
+        </div>
+        <div id="tasks_by_positions" class="task-cards main-lists" data-controller="drag" data-drag-url="move/:id" data-target="tasks.listsPositions">
+          <%= render 'tasks/draggable_tasks_todo', tasks: todo(@tasks_by_positions) %>
+        </div>
+        <div id="tasks_by_priorities" class="task-cards main-lists d-none" data-target="tasks.listsPriorities">
+          <%= render 'tasks/tasks_todo', tasks: todo(@tasks_by_priorities) %>
+        </div>
+
     </div>
     <div class="done-tasks">
       <div class="status-infos">

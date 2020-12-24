@@ -1,0 +1,14 @@
+// reset task form
+document.getElementById('task_title').value = ''
+document.getElementsByClassName('flatpickr-day selected')
+let today = new Date();
+let date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+document.getElementById('task_deadline').value = date
+document.getElementById('task_priority_normal').checked = true
+document.getElementById('task_priority_urgent').checked = false
+document.getElementById('task_priority_very_urgent').checked = false
+
+// reload tasks lists
+document.getElementById("tasks_by_deadlines").innerHTML = "<%= j render(partial: 'tasks/tasks_todo', locals: { tasks: todo(@tasks_by_deadlines) } ) %>"
+document.getElementById("tasks_by_priorities").innerHTML = "<%= j render(partial: 'tasks/tasks_todo', locals: { tasks: todo(@tasks_by_priorities) } ) %>"
+document.getElementById("tasks_by_positions").innerHTML = "<%= j render(partial: 'tasks/draggable_tasks_todo', locals: { tasks: todo(@tasks_by_positions) } ) %>"

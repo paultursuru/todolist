@@ -1,0 +1,5 @@
+document.getElementById('task_title').value = ''
+
+document.getElementById("tasks_by_deadlines").innerHTML = "<%= j render(partial: 'tasks/tasks_todo', locals: { tasks: todo(@tasks_by_deadlines) } ) %>"
+document.getElementById("tasks_by_priorities").innerHTML = "<%= j render(partial: 'tasks/tasks_todo', locals: { tasks: todo(@tasks_by_priorities) } ) %>"
+document.getElementById("tasks_by_positions").innerHTML = "<%= j render(partial: 'tasks/draggable_tasks_todo', locals: { tasks: todo(@tasks_by_positions) } ) %>"
